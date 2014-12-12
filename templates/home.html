@@ -1,0 +1,21 @@
+<html>
+<head>
+<title> todo </title>
+<link rel="stylesheet" href="/static/main.css">
+<style type="text/css"></style>
+
+</head>
+<body>
+	<div class="input-group">
+		<textarea class="form-control" placeholder="Just Do IT!"> </textarea>
+		<div>
+			<button class="btn add" >添加</button>
+		</div>
+	</div>
+	<ol class="todo-list">
+		{% for entry in entries %}
+			<li> {{ entry.content }} </li>
+		{% end %}
+	</ol>
+</body>
+</html>
