@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title> todo </title>
@@ -7,15 +8,28 @@
 </head>
 <body>
 	<div class="input-group">
-		<textarea class="form-control" placeholder="Just Do IT!"> </textarea>
-		<div>
-			<button class="btn add" >添加</button>
-		</div>
+		<form action="/" method="post">
+			<div><textarea name="todo_entry" class="form-control pull-left" placeholder="Just Do IT!"></textarea></div>
+			<div><input type="submit" class="btn add" value="添加"></div>
+		</form>
 	</div>
 	<ol class="todo-list">
 		{% for entry in entries %}
-			<li> {{ entry.content }} </li>
+		<li data-id="{{ entry.entry_id }}"> {{ entry.content }} <button type="button" class="close">x</button></li>
 		{% end %}
 	</ol>
+	<script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(".close").click(function(){
+			var _li = $(this).parent();
+			var id = _li.data("id");
+			$.get("/del?id="+id, function(e){
+				if(e.err) { alert(e.err_msg); }
+				else {
+					_li.remove();
+				}
+			});
+		});
+	</script>
 </body>
 </html>

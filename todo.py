@@ -32,8 +32,25 @@ db_conn = torndb.Connection(options.mysql_host, options.mysql_database,
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        entries = db_conn.query("select * from entries order by sub_time desc")
+        entries = db_conn.query("select * from entries order by sub_time")
         self.render("home.html", entries=entries)
+
+    def post(self):
+        print str(self.request.arguments) + '*'*40 + '\n'
+        #print self.get_argument("todo_entry") + '*'*40 + '\n'
+        entry = self.get_argument("todo_entry")
+        db_conn.execute("insert into entries (content, sub_time) values"
+                "(%s, now())", entry);
+        self.redirect('/')
+
+
+class DeleteHandler(tornado.web.RequestHandler):
+    def get(self):
+        id = self.get_argument("id", None)
+        if id:
+            db_conn.execute("delete from entries where entry_id=%s", id)
+        self.redirect('/')
+
 
 settings = dict(
     debug= True,
@@ -43,6 +60,7 @@ settings = dict(
 
 application = tornado.web.Application([
     (r"/", MainHandler),
+    (r"/del", DeleteHandler),
     ], **settings
 )
 

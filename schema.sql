@@ -1,8 +1,11 @@
-drop database if exists todo;
-create database todo;
-grant all privileges on todo.* to 'cm'@'localhost' identified by ' ';
+--drop database if exists todo;
+--create database todo;
+--grant all privileges on todo.* to 'cm'@'localhost' identified by ' ';
+set session time_zone="+08:00";
+
 use todo;
 
+drop table if exists entries;
 create table entries(
 	entry_id	int	 not null	auto_increment,
 	content 	varchar(200) 	not null,
