@@ -15,7 +15,7 @@
 	</div>
 	<ol class="todo-list">
 		{% for entry in entries %}
-		<li data-id="{{ entry.entry_id }}"> {{ entry.content }} <button type="button" class="close">x</button></li>
+		<li data-id="{{ entry.id }}"> {{ entry.content }} <button type="button" class="close">x</button></li>
 		{% end %}
 	</ol>
 	<script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>
