@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{{ static_url("main.css") }}">
+	<link rel="stylesheet" href="{{ static_url("login.css") }}">
+
+</head>
+<body>
+<div class="auth-form" id="login">
+    <form accept-charset="UTF-8" action="/login" method="post">
+		<div style="margin:0;padding:0;display:inline">
+			<input name="utf8" type="hidden" value="✓">
+			<input name="authenticity_token" type="hidden" value="mYcZCNFsQfQWtujCcLmntuhEKqdqy4y8FJQe8SzIAeRQ4flkTqgwsYfar02DpzezHtD1DnRHiXlrS6e04VMSeA==">	 </div>      
+		<div class="auth-form-header">
+        	<h1>Sign in</h1>
+        </div>
+     	<div class="auth-form-body">
+        	<label for="login_field">
+         		Username or Email
+        	</label>
+        	<input autocapitalize="off" autocorrect="off" autofocus="autofocus" class="input-block" id="login_field" name="username" tabindex="1" type="text">
+	        <label for="password-field">
+				Password <!-- <a href="/password_reset">(forgot password)</a> -->
+        	</label>
+        	<input class="input-block" id="password-field" name="password" tabindex="2" type="password">
+            <input class="button button-login" data-disable-with="Sign in…" name="commit" tabindex="3" type="submit" value="登陆">
+			<a class="button button-register" href="/join" data-disable-with="Sign up…" name="commit" tabindex="4">注册</a>
+      </div>
+	</form>
+</div>
+<div class="hints">{{ error_hints if error_hints else "" }}</div>
+</body>
+</html>

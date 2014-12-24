@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<header class="todo-header">
+	<div class="welcome"> Todo </div>
+	<div class="sign-in-out">	
+		{% if not user %}
+		<span> <a href="/login"> Sign in </a> </span>
+		{% else %}
+		<span> <a href="/logout"> Sign out </a> </span>
+		{% end %}
+	</div>
+	<div class="sign-up">
+		{% if not user %}
+		<span> <a href="/join"> Sign up </a> </span>
+		{% end %}
+	</div>
+</header>
+

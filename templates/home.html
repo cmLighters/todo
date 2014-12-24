@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> todo </title>
-<link rel="stylesheet" href="/static/main.css">
+<title> todo {% if user %} | {{ user }}{% end %}  </title>
+<link rel="stylesheet" href="{{ static_url("main.css") }}">
 <style type="text/css"></style>
 
 </head>
 <body>
+	{% include "header.html" %}
 	<div class="input-group">
 		<form action="/" method="post">
 			<div><textarea name="todo_entry" class="form-control pull-left" placeholder="Just Do IT!"></textarea></div>
@@ -14,8 +15,8 @@
 		</form>
 	</div>
 	<ol class="todo-list">
-		{% for entry in entries %}
-		<li data-id="{{ entry.id }}"> {{ entry.content }} <button type="button" class="close">x</button></li>
+		{% for index in range(0, len(entries)) %}
+		<li data-id="{{ index }}"> {{ entries[index] }} <button type="button" class="close">x</button></li>
 		{% end %}
 	</ol>
 	<script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>

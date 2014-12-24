@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title> 注册 </title>
+	<link rel="stylesheet" href="{{ static_url("main.css") }}">
+	<link rel="stylesheet" href="{{ static_url("join.css") }}">
+</head>
+<body>
+	<div class="join-container">
+		<form class="form-join" role="form" action="/join" method="post">
+			<div class="form-join-header">
+				<h1>Todo注册</h1>
+			</div>
+			<div class="form-join-body">
+				<label for="id_email">Email:</label> 
+				<input autofocus="" class="input-block" id="id_user" maxlength="100" name="username" placeholder="Email or nickname" required="" type="text">
+				<label for="id_pwd_label">密码:</label> 
+				<input class="input-block" id="id_pwd" name="password1" placeholder="密码" required="" type="password">
+				<label for="id_pwd2_label">密码(重复):</label> 
+				<input class="input-block" id="id_pwd2" name="password2" placeholder="重复密码" required="" type="password">
+				<button class="button button-register" type="submit">注 册</button>
+				
+				<a class="button button-login" href="/login" data-disable-with="Sign up…" name="commit" tabindex="4">登陆</a>
+			</div>
+		</form>
+	</div>
+	<div class="hints">{{ error_hints if error_hints else "" }}</div>
+</body>	
+<html>
