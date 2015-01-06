@@ -8,7 +8,7 @@ root = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(root, 'local-packages'))
 #end
 
-import tornado.web 
+import tornado.web
 import tornado.ioloop
 from tornado.options import options, define
 import redis
@@ -32,6 +32,10 @@ class BaseHandler(tornado.web.RequestHandler):
         md5 = hashlib.md5(username+password+'cm_Lighters')      #"cm_Lighters as 'the-Salt'"
         return md5.hexdigest()
 
+    def write_error(self, status_code, **kwargs):
+        if status_code == 404:
+            self.render('404.html')
+
 
 # 注册模块，记录用户名和密码，校验用户名和密码正确性，密码加密存储
 class SignUpHandler(BaseHandler):
@@ -53,7 +57,7 @@ class SignUpHandler(BaseHandler):
         self.redis.hset('todo_user', username, encry_passwd)
         self.redirect("/login")
 
-        
+
 class SignInHandler(BaseHandler):
     def get(self):
         self.render("login.html", error_hints=None)
@@ -80,6 +84,7 @@ class MainHandler(BaseHandler):
         entries = self.redis.lrange('todo_'+ self.current_user+'_entries', 0, -1)
         self.render("home.html", user = self.current_user, entries=entries)
 
+    @tornado.web.authenticated
     def post(self):
         print str(self.request.arguments) + '*'*40 + '\n'
         content = self.get_argument("todo_entry")
