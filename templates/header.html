@@ -8,10 +8,11 @@
 		<span> <a href="/logout"> Sign out </a> </span>
 		{% end %}
 	</div>
+	
+	{% if not user %}
 	<div class="sign-up">
-		{% if not user %}
 		<span> <a href="/join"> Sign up </a> </span>
-		{% end %}
 	</div>
+	{% end %}
 </header>
 

@@ -112,7 +112,7 @@ class Application(tornado.web.Application):
             (r"/logout", SignOutHandler),
         ]
         settings = dict(
-            debug= True,
+           # debug= True,
             template_path = os.path.join(os.path.dirname(__file__), "templates"),
             static_path = os.path.join(os.path.dirname(__file__), "static"),
             cookie_secret = "3AVYlROKQU+dAETGAwgvducr8z1DAUkvlLV6guVnBcc=",         # base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
@@ -125,5 +125,5 @@ class Application(tornado.web.Application):
 
 if __name__ == '__main__':
     application = Application()
-    application.listen(8888)
+    application.listen(5939)
     tornado.ioloop.IOLoop.instance().start()
